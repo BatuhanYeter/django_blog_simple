@@ -25,7 +25,7 @@ SECRET_KEY = 'rpeflm*xttn2qmyuto5@482_ee1y)68-hw-smn@h0m7&wqiaxy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mydjangoappbatu.herokuapp.com']
 
 
 # Application definition
