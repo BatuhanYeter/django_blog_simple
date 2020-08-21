@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+<!-- farklı app de olsak dahi, diğer app lerden extend edilebiliyor, harika -->
+{% load crispy_forms_tags %}
+<!-- crispy forms aktif ediyoruz -->
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--bunu koymak şartmış-->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Profile Info</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <!--we can access the form variable that we wrote in the context like this-->
+            <!--form.as_p -> as paragraph-->
+        </fieldset>
+        <!--Default form does not have a submit button, we need to add it-->
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+<!-- {{ user.username }} -->
+<!-- buradaki user bizim göndermemiz gereken bir user değil, djangonun sağladığı current user, 
+        mevcut giriş yapmış kullanıcı. AMAZING!!! -->
+{% endblock content %}

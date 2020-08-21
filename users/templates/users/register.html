@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+<!-- farklı app de olsak dahi, diğer app lerden extend edilebiliyor, harika -->
+{% load crispy_forms_tags %}
+<!-- crispy forms aktif ediyoruz -->
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <!--bunu koymak şartmış-->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join today</legend>
+            {{ form|crispy }} <!--we can access the form variable that we wrote in the context like this-->
+            <!--form.as_p -> as paragraph-->
+        </fieldset>
+        <!--Default form does not have a submit button, we need to add it-->
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}
